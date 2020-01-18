@@ -6,7 +6,11 @@
   "author": "Pieter Heyvaert (https://pieterheyvaert.com)",
   "license": "MIT",
   "private": false,
+  "bin": {
+    "kg-validator": "bin/cli.js"
+  },
   "dependencies": {
+    "commander": "^4.1.0",
     "graphql-ld": "^1.0.1",
     "graphql-ld-comunica": "^1.0.1"
   }

@@ -20,10 +20,6 @@ const validLevels = ['', 'my first battle', 'amateur', 'beginners', 'pro', 'all'
 
 const client = new Client({context, queryEngine: new QueryEngineComunica(comunicaConfig)});
 
-validateAges();
-validateGenders();
-validateLevels();
-
 async function validateAges() {
   const query = `
   query {
@@ -32,12 +28,15 @@ async function validateAges() {
   }`;
 
   const {data} = await client.query({query});
+  const invalids = [];
 
   data.forEach(item => {
     if (validAges.indexOf(item.age) === -1) {
-      console.log(item);
+      invalids.push(item);
     }
   });
+
+  return invalids;
 }
 
 async function validateGenders() {
@@ -48,12 +47,15 @@ async function validateGenders() {
   }`;
 
   const {data} = await client.query({query});
+  const invalids = [];
 
   data.forEach(item => {
     if (validGenders.indexOf(item.gender) === -1) {
-      console.log(item);
+      invalids.push(item);
     }
   });
+
+  return invalids;
 }
 
 async function validateLevels() {
@@ -64,10 +66,19 @@ async function validateLevels() {
   }`;
 
   const {data} = await client.query({query});
+  const invalids = [];
 
   data.forEach(item => {
     if (validLevels.indexOf(item.level) === -1) {
-      console.log(item);
+      invalids.push(item);
     }
   });
+
+  return invalids;
 }
+
+module.exports = {
+  validateLevels,
+  validateGenders,
+  validateAges
+};
