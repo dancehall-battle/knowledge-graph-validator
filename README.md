@@ -8,4 +8,6 @@ Install the dependencies via `yarn install`
 
 ## Usage
 
-Execute `index.js` via `node index.js`
+Execute `./bin/cli.js` or if you install it globally via `npm link`
+then you can execute `kg-validator`.
+Use `-h` to see the different options.
